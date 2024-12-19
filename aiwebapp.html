@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joke Generator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://th.bing.com/th/id/OIP.E5wn7RisBOP7DN8uMOf3NQHaEZ?w=311&h=184&c=7&r=0&o=5&dpr=1.2&pid=1.7') no-repeat center center fixed;
+      background-size: cover; /* Cover the entire background */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: #fff;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 40px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-out;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #ff7e5f;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+
+    .joke {
+      font-size: 24px;
+      margin: 30px 0;
+      color: #333;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.6;
+      min-height: 80px;
+      padding: 20px;
+      border: 2px solid #ff7e5f;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+      padding: 14px 30px;
+      font-size: 20px;
+      background-color: #ff7e5f;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #feb47b;
+      transform: translateY(-3px);
+    }
+
+    button:active {
+      background-color: #ff6a4d;
+      transform: translateY(1px);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Joke Generator</h1>
+    <div id="joke" class="joke">Click the button for a joke!</div>
+    <button onclick="generateJoke()">Get a Joke</button>
+  </div>
+
+  <script>
+    // List of jokes and their answers
+    const jokes = [
+      { question: "Why don’t skeletons fight each other?", answer: "They don’t have the guts." },
+      { question: "I told my wife she was drawing her eyebrows too high.", answer: "She looked surprised." },
+      { question: "Why don’t eggs tell jokes?", answer: "They might crack up." },
+      { question: "I’m on a whiskey diet.", answer: "I’ve lost three days already." },
+      { question: "I told my computer I needed a break.", answer: "And now it won’t stop sending me Kit-Kats." },
+      { question: "Why do cows have hooves instead of feet?", answer: "Because they lactose." },
+      { question: "What’s orange and sounds like a parrot?", answer: "A carrot!" },
+      { question: "Why did the scarecrow win an award?", answer: "Because he was outstanding in his field!" }
+    ];
+
+    let currentJoke = {}; // Track the current joke
+    let isAnswerVisible = false; // State to check if the answer is visible
+
+    // Function to generate jokes
+    function generateJoke() {
+      const jokeElement = document.getElementById('joke');
+      
+      // If the answer is already displayed, show the question again
+      if (isAnswerVisible) {
+        jokeElement.textContent = currentJoke.question;
+        isAnswerVisible = false; // Reset to show the question
+      } else {
+        // If the question is showing, show the answer on the next click
+        if (!currentJoke.question) {
+          const randomIndex = Math.floor(Math.random() * jokes.length); // Randomly select a joke
+          currentJoke = jokes[randomIndex];
+          jokeElement.textContent = currentJoke.question;
+        } else {
+          jokeElement.textContent = currentJoke.answer;
+          isAnswerVisible = true; // Now the answer is visible
+        }
+      }
+    }
+  </script>
+   <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="Newscratch.html">Scratch Page →</a></div>
+</body>
+</html>
+
+
+
